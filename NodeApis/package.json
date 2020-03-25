@@ -1,0 +1,18 @@
+{
+  "name": "fyp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "start-server": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expressjs": "^1.0.1",
+    "nodemon": "^2.0.2",
+    "web3": "^1.2.6"
+  }
+}
