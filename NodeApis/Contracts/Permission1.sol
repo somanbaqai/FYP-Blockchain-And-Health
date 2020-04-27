@@ -4,12 +4,12 @@ contract Permission {
    
     struct ProvidersHavingAccessToPatient {
         string providerName;
-        int32 accessLevel;
+        uint accessLevel;
     }
     
     struct PatientsAccessibleByProvider {
         string patientCNIC;
-        int32 accessLevel;
+        uint accessLevel;
     }
    
     mapping (string => ProvidersHavingAccessToPatient[]) ProvidersHavingAccessToPatientsList;
@@ -22,4 +22,18 @@ contract Permission {
     }
     
     string[] tempNamesList;
+
+function updatePatientPermissionsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
+     
+        // Fetches list of providers that have been given access to patient's information
+        ProvidersHavingAccessToPatient[] storage providersHavingAccessToPatient = ProvidersHavingAccessToPatientsList[patientCNIC];
+        
+        string[] storage tempListOfProviders;
+        // Storing list of providers having access to a patient's information in tempListOfProviders
+        for (uint i = 0; i < providersHavingAccessToPatient.length; i++){
+            tempListOfProviders.push(providersHavingAccessToPatient[i].providerName);
+        }
+      
+    }
 }
+
