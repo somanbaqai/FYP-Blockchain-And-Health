@@ -20,4 +20,6 @@ contract Permission {
     constructor() public {
         owner = msg.sender;
     }
+    
+    string[] tempNamesList;
 }
