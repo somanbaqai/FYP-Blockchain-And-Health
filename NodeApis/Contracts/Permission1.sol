@@ -66,5 +66,26 @@ contract Permission {
         updateProviderPermissionsList(patientCNIC, providerID, accessLevel);
       
     }
+
+    function getPatientPermissionsList(string memory patientCNIC ) public view returns(string  memory, string memory){
+        
+        string memory listOfProviders="[";
+        string memory listOfAccesses="[";
+        
+        uint256 numberOfProviders = ListOfProvidersHavingAccessToPatients[patientCNIC].providerName.length ;
+           
+        listOfProviders = string(abi.encodePacked(listOfProviders,'{"provider_email":"',ListOfProvidersHavingAccessToPatients[patientCNIC].providerName[0]));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provider_access":"',ListOfProvidersHavingAccessToPatients[patientCNIC].accessLevel[0]));
+        
+        for(uint256 i=1; i < numberOfProviders; i++)
+        {
+            listOfProviders = string(abi.encodePacked(listOfProviders,'"},{"provider_email":"',ListOfProvidersHavingAccessToPatients[patientCNIC].providerName[i]));
+            listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provider_access":"',ListOfProvidersHavingAccessToPatients[patientCNIC].accessLevel[i]));
+        }
+        
+        listOfProviders = string(abi.encodePacked(listOfProviders,'"}]'));
+        return (listOfProviders, listOfAccesses);
+        
+    }
 }
 
