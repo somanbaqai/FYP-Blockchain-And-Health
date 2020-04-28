@@ -11,7 +11,7 @@ contract Permission {
     // Provider to Patient Permissions List
     struct PatientsAccessibleByProvider {
         string[] patientCNIC;
-        uint[] accessLevel;
+        string[] accessLevel;
     }
    
     mapping (string => ProvidersHavingAccessToPatient) ListOfProvidersHavingAccessToPatients;
@@ -24,6 +24,7 @@ contract Permission {
     }
     
     string[] tempProviders;
+    string[] tempPatients;
     string[] tempAccesses;
     
     function updatePatientPermissionsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
@@ -86,6 +87,46 @@ contract Permission {
         listOfProviders = string(abi.encodePacked(listOfProviders,'"}]'));
         return (listOfProviders, listOfAccesses);
         
+    }
+
+    function updateProviderPermissionsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
+     
+        // Fetches list of providers that have been given access to patient's information
+        PatientsAccessibleByProvider storage patientsAccessibleByProvider = ListOfPatientsAccessibleByProviders[providerID];
+        
+        // Storing list of providers having access to a patient's information in tempListOfProviders
+        string[] memory tempListOfProvidersForLength = patientsAccessibleByProvider.patientCNIC;
+        uint numberOfProviders = tempListOfProvidersForLength.length;
+        
+        delete tempPatients;
+        delete tempAccesses;
+        
+        int change = 0;
+        
+        for (uint i = 0; i < numberOfProviders; i++){
+            if (keccak256(abi.encodePacked(patientsAccessibleByProvider.patientCNIC[i])) != keccak256(abi.encodePacked(patientCNIC))){
+                
+                tempPatients.push(patientsAccessibleByProvider.patientCNIC[i]);
+                tempAccesses.push(patientsAccessibleByProvider.accessLevel[i]);
+                
+            } 
+            else {
+                
+                change = 1;
+                
+            }
+        }
+        
+        if (change == 0 && keccak256(abi.encodePacked(accessLevel)) != keccak256(abi.encodePacked("0"))){
+            
+            tempPatients.push(patientCNIC);
+            tempAccesses.push(accessLevel);
+            
+        }
+        
+        patientsAccessibleByProvider.patientCNIC = tempPatients;
+        patientsAccessibleByProvider.accessLevel = tempAccesses;
+      
     }
 }
 
