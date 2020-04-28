@@ -30,3 +30,13 @@
     * Remember: report_title, report_time, report_details is to be passed in the given format as string with each separated by the double pipe sign respectively
 
 - get Lab Report: http://192.168.32.134:3639/report/get?enc_id=0
+
+
+## Permission APIS
+- Update Patient Permissions List: http://192.168.32.134:3639/patient_permissions_list/update?pat_cnic=42101&prov_id=12&access_level=1
+
+- Update Provider Persmissions List: http://192.168.32.134:3639/provider_permissions_list/update?pat_cnic=42101&prov_id=12&access_level=1
+
+- Get Patient Permissions List: http://192.168.32.134:3639/patient_permissions_list/get?pat_cnic=42101
+
+- Get Provider Persmissions List : http://192.168.32.134:3639/provider_permissions_list/get?provider_id=12

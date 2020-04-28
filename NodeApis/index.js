@@ -14,6 +14,14 @@ const getPrescription = require('./routes/getPrescription');
 const addReport = require('./routes/addReport');
 const getReport = require('./routes/getReport');
 
+const updatePatientPermissionsList = require('./routes/updatePatientPermissionsList');
+const updateProviderPermissionsList = require('./routes/updateProviderPermissionsList');
+const getPatientPermissionsList = require('./routes/getPatientPermissionsList');
+const getProviderPermissionsList = require('./routes/getProviderPermissionsList');
+
+
+
+
 
 
 
@@ -33,8 +41,14 @@ express_app.use('/encounter/get',getEncounter);
 express_app.use('/prescription/add',addPrescription);
 express_app.use('/prescription/get',getPrescription);
 
+
 express_app.use('/report/add',addReport);
 express_app.use('/report/get',getReport);
+
+express_app.use('/patient_permissions_list/update',updatePatientPermissionsList);
+express_app.use('/provider_permissions_list/update',updateProviderPermissionsList);
+express_app.use('/patient_permissions_list/get',getPatientPermissionsList);
+express_app.use('/provider_permissions_list/get',getProviderPermissionsList);
 
 
 
