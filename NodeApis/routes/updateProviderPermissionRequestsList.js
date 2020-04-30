@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 // var Web3 = require('web3');
-var PermissionContract = require('../contractAbis/permissionAbi');
+var PermissionContract = require('../contractAbis/permissionRequestAbi');
 
 
 router.get('/', (request, response, next) => {
