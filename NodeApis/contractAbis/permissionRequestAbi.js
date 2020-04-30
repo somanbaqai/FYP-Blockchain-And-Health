@@ -133,7 +133,7 @@ web3.eth.getAccounts().then(function(response) {
 web3.eth.defaultAccount = web3.eth.accounts[0];
 console.log(web3.eth.defaultAccount);
 console.log(web3.eth.accounts[0])
-var PermissionContract = new web3.eth.Contract( permission_request_contractABI,permission_request_contract_address);
+var PermissionRequestContract = new web3.eth.Contract( permission_request_contractABI,permission_request_contract_address);
 
 
 //PermissionContract.createProposal("ADHD", "Foo", 2, {from: web3.eth.defaultAccount, gas:3000000})
