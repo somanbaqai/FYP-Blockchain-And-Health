@@ -68,7 +68,7 @@ contract PermissionRequests {
       
     }
 
-    function getPatientPermissionRequestssList(string memory patientCNIC ) public view returns(string  memory, string memory){
+    function getPatientPermissionRequestsList(string memory patientCNIC ) public view returns(string  memory, string memory){
         
         string memory listOfProviders="[";
         string memory listOfAccesses="[";
