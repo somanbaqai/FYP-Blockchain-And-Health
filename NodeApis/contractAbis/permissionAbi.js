@@ -1,48 +1,8 @@
-
-var permission_contract_address = "0x213FD1acCa0A3f63C9fe475a88fAe4FB852e0eDf";
+var Web3 = require('web3');
+var permission_contract_address = "0x7620C84B13a9bC66705Fa93ce523408048dB9A2d";
 
 var permission_contractABI = 
 [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "patientCnic",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "prociderID",
-				"type": "string"
-			}
-		],
-		"name": "togglePatientPermission",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "patientCnic",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "prociderID",
-				"type": "string"
-			}
-		],
-		"name": "toggleProviderPermission",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [],
 		"payable": false,
@@ -54,12 +14,17 @@ var permission_contractABI =
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "PatientCNIC",
+				"name": "patientCNIC",
 				"type": "string"
 			}
 		],
-		"name": "getPatientPermissionList",
+		"name": "getPatientPermissionsList",
 		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
 			{
 				"internalType": "string",
 				"name": "",
@@ -75,12 +40,17 @@ var permission_contractABI =
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "prociderID",
+				"name": "providerID",
 				"type": "string"
 			}
 		],
-		"name": "getProviderPermissionList",
+		"name": "getProviderPermissionsList",
 		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
 			{
 				"internalType": "string",
 				"name": "",
@@ -89,6 +59,56 @@ var permission_contractABI =
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "patientCNIC",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "providerID",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "accessLevel",
+				"type": "string"
+			}
+		],
+		"name": "updatePatientPermissionsList",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "patientCNIC",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "providerID",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "accessLevel",
+				"type": "string"
+			}
+		],
+		"name": "updateProviderPermissionsList",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

@@ -2,119 +2,154 @@ pragma solidity >=0.4.22 <0.6.0;
 //pragma experimental ABIEncoderV2;
 contract Permission {
    
-    struct PatientProviderAccess {
+    // Patient to Provider Permissions List
+    struct ProvidersHavingAccessToPatient {
         string[] providerName;
-      
+        string[] accessLevel;
     }
-    struct ProviderPatientAccess {
-        string[] patienName;
     
+    // Provider to Patient Permissions List
+    struct PatientsAccessibleByProvider {
+        string[] patientCNIC;
+        string[] accessLevel;
     }
    
-    mapping (string => PatientProviderAccess) PatientProviderAccessList;
-    mapping (string => ProviderPatientAccess) ProviderPatientAccessList;
+    mapping (string => ProvidersHavingAccessToPatient) ListOfProvidersHavingAccessToPatients;
+    mapping (string => PatientsAccessibleByProvider) ListOfPatientsAccessibleByProviders;
  
     address owner;
    
     constructor() public {
         owner = msg.sender;
     }
-    string []   pNs;
- 
-    function togglePatientPermission(string memory patientCnic,string memory prociderID) public{
-     
-       PatientProviderAccess storage patientprovideraccess = PatientProviderAccessList[patientCnic];
-      
-       string[] memory pN=patientprovideraccess.providerName;
-       uint256 len=pN.length ;
-        delete   pNs;
-        int change=0;
-       for(uint256 i=0;i<len;i++)
-       {
-          if(keccak256(abi.encodePacked(patientprovideraccess.providerName[i])) != keccak256(abi.encodePacked(prociderID))){
-          
-               pNs.push(patientprovideraccess.providerName[i]);
-           }
-           else{
-               change=1;
-           }
-       }
-      
-       if(change==0)
-       {
-           pNs.push(prociderID);
-       }
-      
     
-       patientprovideraccess.providerName=pNs;
-       toggleProviderPermission(patientCnic,prociderID);
-      
-    }
-   
-    function getPatientPermissionList(string memory PatientCNIC ) public view returns(string  memory ){
- 
-        string memory str="[";
-       
-           uint256 len=PatientProviderAccessList[PatientCNIC].providerName.length ;
-            str= string(abi.encodePacked(str,'{"provider_email":"',PatientProviderAccessList[PatientCNIC].providerName[0]));
-           
-           for(uint256 i=1;i<len;i++)
-           {
-               str= string(abi.encodePacked(str,'"},{"provider_email":"',PatientProviderAccessList[PatientCNIC].providerName[i]));
-           }
-          
-            str= string(abi.encodePacked(str,'"}]'));
-         return (str);
-      
-    }
-   
-      function toggleProviderPermission(string memory patientCnic,string memory prociderID) public{
+    string[] tempProviders;
+    string[] tempPatients;
+    string[] tempAccesses;
+    
+    function updatePatientPermissionsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
      
-       ProviderPatientAccess storage providerpatientaccess = ProviderPatientAccessList[prociderID];
-      
-       string[] memory pN=providerpatientaccess.patienName;
-       uint256 len=pN.length ;
-        delete   pNs;
-        int change=0;
-       for(uint256 i=0;i<len;i++)
-       {
-          if(keccak256(abi.encodePacked(providerpatientaccess.patienName[i])) != keccak256(abi.encodePacked(patientCnic))){
-          
-               pNs.push(providerpatientaccess.patienName[i]);
-           }
-           else{
-               change=1;
-           }
-       }
-      
-       if(change==0)
-       {
-           pNs.push(patientCnic);
-       }
-      
-     
-       providerpatientaccess.patienName=pNs;
+        // Fetches list of providers that have been given access to patient's information
+        ProvidersHavingAccessToPatient storage providersHavingAccessToPatient = ListOfProvidersHavingAccessToPatients[patientCNIC];
+        
+        // Storing list of providers having access to a patient's information in tempListOfProviders
+        string[] memory tempListOfProvidersForLength = providersHavingAccessToPatient.providerName;
+        uint numberOfProviders = tempListOfProvidersForLength.length;
+        
+        delete tempProviders;
+        delete tempAccesses;
+        
+        int change = 0;
+        
+        for (uint i = 0; i < numberOfProviders; i++){
+            if (keccak256(abi.encodePacked(providersHavingAccessToPatient.providerName[i])) != keccak256(abi.encodePacked(providerID))){
+                
+                tempProviders.push(providersHavingAccessToPatient.providerName[i]);
+                tempAccesses.push(providersHavingAccessToPatient.accessLevel[i]);
+                
+            } 
+            else {
+                
+                change = 1;
+                
+            }
+        }
+        
+        if (change == 0 && keccak256(abi.encodePacked(accessLevel)) != keccak256(abi.encodePacked("0"))){
+            
+            tempProviders.push(providerID);
+            tempAccesses.push(accessLevel);
+            
+        }
+        
+        providersHavingAccessToPatient.providerName = tempProviders;
+        providersHavingAccessToPatient.accessLevel = tempAccesses;
+        // updateProviderPermissionsList(patientCNIC, providerID, accessLevel);
       
     }
-   
-    function getProviderPermissionList(string memory prociderID ) public view returns(string memory ){
-          string memory str="[";
-       
-           uint256 len=ProviderPatientAccessList[prociderID].patienName.length ;
-            str= string(abi.encodePacked(str,'{"patient_cnic":"',ProviderPatientAccessList[prociderID].patienName[0]));
+
+    function getPatientPermissionsList(string memory patientCNIC ) public view returns(string  memory, string memory){
+        
+        string memory listOfProviders="[";
+        string memory listOfAccesses="[";
+        
+        uint256 numberOfProviders = ListOfProvidersHavingAccessToPatients[patientCNIC].providerName.length ;
            
-           for(uint256 i=1;i<len;i++)
-           {
-               str= string(abi.encodePacked(str,'"},{"patient_cnic":"',ProviderPatientAccessList[prociderID].patienName[i]));
-
-
-           }
-          
-            str= string(abi.encodePacked(str,'"}]'));
-         return (str);
- 
-       
+        listOfProviders = string(abi.encodePacked(listOfProviders,'{"provider_email":"',ListOfProvidersHavingAccessToPatients[patientCNIC].providerName[0]));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provider_access":"',ListOfProvidersHavingAccessToPatients[patientCNIC].accessLevel[0]));
+        
+        for(uint256 i=1; i < numberOfProviders; i++)
+        {
+            listOfProviders = string(abi.encodePacked(listOfProviders,'"},{"provider_email":"',ListOfProvidersHavingAccessToPatients[patientCNIC].providerName[i]));
+            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"provider_access":"',ListOfProvidersHavingAccessToPatients[patientCNIC].accessLevel[i]));
+        }
+        
+        listOfProviders = string(abi.encodePacked(listOfProviders,'"}]'));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'"}]'));
+        return (listOfProviders, listOfAccesses);
+        
     }
-   
-   
-} 
+    
+    function updateProviderPermissionsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
+     
+        // Fetches list of providers that have been given access to patient's information
+        PatientsAccessibleByProvider storage patientsAccessibleByProvider = ListOfPatientsAccessibleByProviders[providerID];
+        
+        // Storing list of providers having access to a patient's information in tempListOfProviders
+        string[] memory tempListOfProvidersForLength = patientsAccessibleByProvider.patientCNIC;
+        uint numberOfProviders = tempListOfProvidersForLength.length;
+        
+        delete tempPatients;
+        delete tempAccesses;
+        
+        int change = 0;
+        
+        for (uint i = 0; i < numberOfProviders; i++){
+            if (keccak256(abi.encodePacked(patientsAccessibleByProvider.patientCNIC[i])) != keccak256(abi.encodePacked(patientCNIC))){
+                
+                tempPatients.push(patientsAccessibleByProvider.patientCNIC[i]);
+                tempAccesses.push(patientsAccessibleByProvider.accessLevel[i]);
+                
+            } 
+            else {
+                
+                change = 1;
+                
+            }
+        }
+        
+        if (change == 0 && keccak256(abi.encodePacked(accessLevel)) != keccak256(abi.encodePacked("0"))){
+            
+            tempPatients.push(patientCNIC);
+            tempAccesses.push(accessLevel);
+            
+        }
+        
+        patientsAccessibleByProvider.patientCNIC = tempPatients;
+        patientsAccessibleByProvider.accessLevel = tempAccesses;
+      
+    }
+    
+    function getProviderPermissionsList(string memory providerID ) public view returns(string  memory, string memory){
+        
+        string memory listOfPatients="[";
+        string memory listOfAccesses="[";
+        
+        uint256 numberOfPatients = ListOfPatientsAccessibleByProviders[providerID].patientCNIC.length ;
+           
+        listOfPatients = string(abi.encodePacked(listOfPatients,'{"patient_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[0]));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provided_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[0]));
+        
+        for(uint256 i=1; i < numberOfPatients; i++)
+        {
+            listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"patient_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[i]));
+            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"provided_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[i]));
+        }
+        
+        listOfPatients = string(abi.encodePacked(listOfPatients,'"}]'));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'"}]'));
+        return (listOfPatients, listOfAccesses);
+        
+    }
+    
+}
