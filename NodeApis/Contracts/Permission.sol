@@ -137,13 +137,13 @@ contract Permission {
         
         uint256 numberOfPatients = ListOfPatientsAccessibleByProviders[providerID].patientCNIC.length ;
            
-        listOfPatients = string(abi.encodePacked(listOfPatients,'{"patient_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[0]));
-        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provided_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[0]));
+        listOfPatients = string(abi.encodePacked(listOfPatients,'{"provider_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[0]));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provider_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[0]));
         
         for(uint256 i=1; i < numberOfPatients; i++)
         {
-            listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"patient_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[i]));
-            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"provided_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[i]));
+            listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"provider_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[i]));
+            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"provider_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[i]));
         }
         
         listOfPatients = string(abi.encodePacked(listOfPatients,'"}]'));

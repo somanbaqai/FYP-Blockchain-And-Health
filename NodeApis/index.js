@@ -19,6 +19,10 @@ const updateProviderPermissionsList = require('./routes/updateProviderPermission
 const getPatientPermissionsList = require('./routes/getPatientPermissionsList');
 const getProviderPermissionsList = require('./routes/getProviderPermissionsList');
 
+const updatePatientPermissionRequestsList = require('./routes/updatePatientPermissionRequestsList');
+const updateProviderPermissionRequestsList = require('./routes/updateProviderPermissionRequestsList');
+const getPatientPermissionRequestsList = require('./routes/getPatientPermissionRequestsList');
+const getProviderPermissionRequestsList = require('./routes/getProviderPermissionRequestsList');
 
 
 
@@ -50,7 +54,9 @@ express_app.use('/provider_permissions_list/update',updateProviderPermissionsLis
 express_app.use('/patient_permissions_list/get',getPatientPermissionsList);
 express_app.use('/provider_permissions_list/get',getProviderPermissionsList);
 
-
-
+express_app.use('/patient_permission_requests_list/update',updatePatientPermissionRequestsList);
+express_app.use('/provider_permission__requests_list/update',updateProviderPermissionRequestsList);
+express_app.use('/patient_permission_requests_list/get',getPatientPermissionRequestsList);
+express_app.use('/provider_permission_requests_list/get',getProviderPermissionRequestsList);
 
 express_app.listen(3639)
