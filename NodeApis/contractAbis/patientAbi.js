@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 
-var patinet_contract_address = "0xe1715514371731B315F3E82ba316aB6E0083208f";
+var patinet_contract_address = "0x8F7A0C514171080cf933b0c6B98830b0CE70f5b1";
 
 var patinet_contractABI = 
 [
@@ -184,14 +184,14 @@ var account_count;
 
 web3.eth.getAccounts().then(function(response) { 
     accounts = response;
-    console.log(accounts[0]);
-    console.log(accounts);
+    // console.log(accounts[0]);
+    // console.log(accounts);
     web3.eth.defaultAccount =  accounts[0];
 });
 
 web3.eth.defaultAccount = web3.eth.accounts[0];
-console.log(web3.eth.defaultAccount);
-console.log(web3.eth.accounts[0])
+// console.log(web3.eth.defaultAccount);
+// console.log(web3.eth.accounts[0])
 var PatientContract = new web3.eth.Contract( patinet_contractABI,patinet_contract_address);
 
 module.exports = PatientContract;

@@ -4,6 +4,7 @@ const patientSignup = require('./routes/patientSignup');
 
 const providerLogin = require('./routes/providerLogin');
 const providerSignup = require('./routes/providerSignup');
+const getAllProviders = require('./routes/getAllProviders');
 
 const addEncounter = require('./routes/addEncounter');
 const getEncounter = require('./routes/getEncounter');
@@ -37,6 +38,7 @@ express_app.use('/patient/signup',patientSignup);
 
 express_app.use('/provider/login',providerLogin);
 express_app.use('/provider/signup',providerSignup);
+express_app.use('/provider/getAll',getAllProviders);getAllProviders
 
 
 express_app.use('/encounter/add',addEncounter);

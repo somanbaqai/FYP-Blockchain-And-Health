@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 
-var prescription_contract_address = "0xE9976363B6A95427aB205e55cb68Eff2f5586610";
+var prescription_contract_address = "0xE3a9290b04E23f0608Dc9f95701E7717ceB62690";
 
 var prescription_contractABI = 
 [
@@ -75,14 +75,14 @@ if (typeof web3 !== 'undefined') {
 
 web3.eth.getAccounts().then(function(response) { 
     accounts = response;
-    console.log(accounts[0]);
-    console.log(accounts);
+    // console.log(accounts[0]);
+    // console.log(accounts);
     web3.eth.defaultAccount =  accounts[0];
 });
 
 web3.eth.defaultAccount = web3.eth.accounts[0];
-console.log(web3.eth.defaultAccount);
-console.log(web3.eth.accounts[0])
+// console.log(web3.eth.defaultAccount);
+// console.log(web3.eth.accounts[0])
 var PrescriptionEncounterContract = new web3.eth.Contract( prescription_contractABI,prescription_contract_address);
 
 

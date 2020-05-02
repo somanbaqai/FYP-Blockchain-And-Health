@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 
-var encounter_contract_address = "0x5534A54d8900Fb7F20c0d19097563e266AD037Da";
+var encounter_contract_address = "0x022f4D6496547d81BBdE09A69b059CD3E213747f";
 
 var encounter_contractABI = 
 [
@@ -178,14 +178,14 @@ if (typeof web3 !== 'undefined') {
 
 web3.eth.getAccounts().then(function(response) { 
     accounts = response;
-    console.log(accounts[0]);
-    console.log(accounts);
+    // console.log(accounts[0]);
+    // console.log(accounts);
     web3.eth.defaultAccount =  accounts[0];
 });
 
 web3.eth.defaultAccount = web3.eth.accounts[0];
-console.log(web3.eth.defaultAccount);
-console.log(web3.eth.accounts[0])
+// console.log(web3.eth.defaultAccount);
+// console.log(web3.eth.accounts[0])
 var MedicalEncounterContract = new web3.eth.Contract( encounter_contractABI,encounter_contract_address);
 
 
