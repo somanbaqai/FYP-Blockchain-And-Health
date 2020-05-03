@@ -10,10 +10,7 @@ router.get('/', (request, response, next) => {
     let pat_cnic = request.query.pat_cnic;
     PermissionContract.methods.getPatientPermissionsList(pat_cnic).call().then(function (result) {
         // console.log(result)
-
         result = { provider_list: JSON.parse(result[0]), provider_access_level: JSON.parse(result[1]) };
-        // console.log(result)
-
         try {
             ProviderContract.methods.getAllProvider().call().then(function (res) {
                 let ResulaltantArray = { provider_list: [] };
