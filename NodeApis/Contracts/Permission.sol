@@ -64,7 +64,7 @@ contract  Permission {
         
         providersHavingAccessToPatient.providerName = tempProviders;
         providersHavingAccessToPatient.accessLevel = tempAccesses;
-        // updateProviderPermissionsList(patientCNIC, providerID, accessLevel);
+        updateProviderPermissionsList(patientCNIC, providerID, accessLevel);
       
     }
 
@@ -143,7 +143,7 @@ contract  Permission {
         for(uint256 i=1; i < numberOfPatients; i++)
         {
             listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"patient_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[i]));
-            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"provided_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[i]));
+            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"requested_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[i]));
         }
         
         listOfPatients = string(abi.encodePacked(listOfPatients,'"}]'));
