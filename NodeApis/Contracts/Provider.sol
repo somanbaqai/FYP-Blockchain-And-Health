@@ -1,5 +1,5 @@
 pragma solidity ^0.5.11;
-
+pragma experimental ABIEncoderV2;
 
 contract Provier {
     
@@ -15,10 +15,12 @@ contract Provier {
         string country;
         string signup_time;
     }
-    uint index = 0;
-    mapping (string => ProviderData) ProviderList;
+    uint private index = 0;
+    mapping  (string => ProviderData) private ProviderList;
     address[] public ProviderAcnts;
     address owner;
+    // store all keys of provider mapping;
+     string [] private keyArray ;
     
  
     
@@ -28,6 +30,7 @@ contract Provier {
 
   
     function setProvider(string memory _fname, string memory _email,string memory _password, string memory _prov_type, string memory _prov_address,  string memory _city, string memory _country, string memory _signup_time, address _address) public{
+        keyArray.push(_email);
         ProviderData storage provider = ProviderList[_email];
         provider.fname = _fname;
 
@@ -57,6 +60,15 @@ contract Provier {
         }
         
         return (ProviderList[_address].fname,ProviderList[_address].email,ProviderList[_address].prov_type,ProviderList[_address].email,ProviderList[_address].patient_address,ProviderList[_address].uid);
+    }
+    
+    function getAllProvider() public view returns(ProviderData [] memory  ){ // here address is email
+         ProviderData[] memory AllProviders = new ProviderData[](keyArray.length);
+        for (uint i = 0; i < keyArray.length; i++) {
+            AllProviders[i] = ProviderList[keyArray[i]];
+        }
+        return AllProviders;
+        // return (ProviderList[_address].fname,ProviderList[_address].email,ProviderList[_address].prov_type,ProviderList[_address].email,ProviderList[_address].patient_address,ProviderList[_address].uid);
     }
     
     
