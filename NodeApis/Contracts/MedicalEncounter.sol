@@ -16,9 +16,9 @@ contract MedicalEncounter {
         string JSON_Data;
     }
    
-    mapping (string => MedicalEnconterStruct) MedicalEncounters;
-    string[] public PatientCNIC;
-    address owner;
+    mapping (string => MedicalEnconterStruct) private MedicalEncounters;
+    string[] private PatientCNIC;
+    address private owner;
   
    uint index = 0;
     constructor() public {

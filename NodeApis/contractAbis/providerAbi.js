@@ -2,70 +2,36 @@
  
 var Web3 = require('web3');
 
-var contract_address = "0xBc1c632E850be915FAfd0e6973A0d3490B1924be";
+var contract_address = "0xA5bc61f5552bc06C76c632137Dc872da34F4Ba67";
 
 var contractABI = 
 [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_fname",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_prov_type",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_prov_address",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_city",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_country",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_signup_time",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "setProvider",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "ProviderAcnts",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"constant": true,
@@ -186,24 +152,58 @@ var contractABI =
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "ProviderAcnts",
-		"outputs": [
+				"internalType": "string",
+				"name": "_fname",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_prov_type",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_prov_address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_city",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_country",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_signup_time",
+				"type": "string"
+			},
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "_address",
 				"type": "address"
 			}
 		],
+		"name": "setProvider",
+		"outputs": [],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

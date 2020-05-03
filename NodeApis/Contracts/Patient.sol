@@ -20,9 +20,9 @@ contract Patient {
     }
     
     uint private index = 0;
-    mapping (string => PatientData) PatientsList;
-    address[] public PatientsAccts;
-    address owner;
+    mapping (string => PatientData) private PatientsList;
+    address[] private PatientsAccts;
+    address private owner;
     
     // store all keys of provider mapping;
     string[] private keyArray ;

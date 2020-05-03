@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 
-var lab_report_contract_address = "0xDc1B12126c01d620907333321ccea994f0C9974F";
+var lab_report_contract_address = "0x33E4e5aEf6B11A82DE8F0812E4eC85445CdA1C72";
 
 var lab_report_contractABI = 
 [

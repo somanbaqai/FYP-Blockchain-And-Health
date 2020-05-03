@@ -14,18 +14,18 @@ contract PermissionRequests {
         string[] accessLevel;
     }
    
-    mapping (string => ProvidersRequestingAccessToPatient) ListOfProvidersRequestingAccessToPatients;
-    mapping (string => PatientsRequestedByProvider) ListOfPatientsRequestedByProviders;
+    mapping (string => ProvidersRequestingAccessToPatient) private ListOfProvidersRequestingAccessToPatients;
+    mapping (string => PatientsRequestedByProvider)  private ListOfPatientsRequestedByProviders;
  
-    address owner;
+    address  private owner;
    
     constructor() public {
         owner = msg.sender;
     }
     
-    string[] tempProviders;
-    string[] tempPatients;
-    string[] tempAccesses;
+    string[]  private tempProviders;
+    string[]  private tempPatients;
+    string[]  private tempAccesses;
     
     function updatePatientPermissionRequestsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
      

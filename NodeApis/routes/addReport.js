@@ -21,7 +21,6 @@ function PackJSON(details){
 router.get('/', (request, response, next) => {
 	console.log("in add prescription");
     let enc_id = null;
-    var date = new Date();
     let report_time = request.query.report_time;
     let report_details = request.query.report_details;
     let report_title = request.query.report_title;
