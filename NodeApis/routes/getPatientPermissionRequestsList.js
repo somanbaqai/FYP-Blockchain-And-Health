@@ -33,7 +33,7 @@ router.get('/', (request, response, next) => {
                     console.log( "res: " + res[j].uid)
                     console.log("uid: " + result.provider_list[x].provider_email + '\n');
                     if(result.provider_list[x].provider_email == res[j].uid){
-                        obj.access_level ='1';
+                        obj.access_level = result.provider_access_level[x].provider_access;
                     }
                 }
                 ResulaltantArray.provider_list.push(obj);

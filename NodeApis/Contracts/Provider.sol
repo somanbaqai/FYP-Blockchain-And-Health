@@ -20,6 +20,7 @@ contract Provier {
     address[] public ProviderAcnts;
     address owner;
     // store all keys of provider mapping;
+
     string[] private keyArray ;
 
     constructor() public {
@@ -61,7 +62,9 @@ contract Provier {
         return (ProviderList[_address].fname,ProviderList[_address].email,ProviderList[_address].prov_type,ProviderList[_address].email,ProviderList[_address].patient_address,ProviderList[_address].uid);
     }
 
+
     function getAllProvider() public view returns(ProviderData[] memory  ){ // here address is email
+
          ProviderData[] memory AllProviders = new ProviderData[](keyArray.length);
         for (uint i = 0; i < keyArray.length; i++) {
             AllProviders[i] = ProviderList[keyArray[i]];
@@ -69,4 +72,6 @@ contract Provier {
         return AllProviders;
         // return (ProviderList[_address].fname,ProviderList[_address].email,ProviderList[_address].prov_type,ProviderList[_address].email,ProviderList[_address].patient_address,ProviderList[_address].uid);
     }
+  
 }
+
