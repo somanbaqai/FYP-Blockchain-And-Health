@@ -1,5 +1,5 @@
 pragma solidity ^0.5.11;
-
+pragma experimental ABIEncoderV2;
 
 contract Patient {
     
@@ -17,15 +17,15 @@ contract Patient {
         string password;
         string email;
         string signup_time;
-        
-        
-
     }
-    uint index = 0;
+    
+    uint private index = 0;
     mapping (string => PatientData) PatientsList;
     address[] public PatientsAccts;
     address owner;
     
+    // store all keys of provider mapping;
+    string[] private keyArray ;
 
     constructor() public {
 
@@ -34,7 +34,8 @@ contract Patient {
 
   
     function setPatient(string memory _fname, string memory _pat_address, string memory _city, string memory _country, string memory _weight,  string memory _height,  string memory _cnic,string memory _DoB,string memory _email,string memory _password,address _address) public{
-
+        keyArray.push(_cnic);
+        
         PatientData storage patient = PatientsList[_cnic];
         patient.fname = _fname;
         patient.pat_address = _pat_address;
@@ -73,6 +74,14 @@ contract Patient {
         return (PatientsList[_cnic].acc_address);
     }
     
+    function getAllPatients() public view returns(PatientData[] memory ){ 
+        // here address is cnic
+        PatientData[] memory allPatients = new PatientData[](keyArray.length);
+        for (uint i = 0; i < keyArray.length; i++){
+            allPatients[i] = PatientsList[keyArray[i]];
+        }
+        return allPatients;
+    }
      
     
 }

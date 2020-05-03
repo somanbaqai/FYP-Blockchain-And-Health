@@ -10,6 +10,7 @@ router.get('/', (request, response, next) => {
     let pat_cnic = request.query.pat_cnic;
     PermissionContract.methods.getPatientPermissionsList(pat_cnic).call().then(function (result) {
         // console.log(result)
+
         result = { provider_list: JSON.parse(result[0]), provider_access_level: JSON.parse(result[1]) };
         // console.log(result)
 
@@ -58,6 +59,7 @@ router.get('/', (request, response, next) => {
         } catch (err) {
             response.send({ server_response: 'API failed: ' + err.toString() });
         }
+
 
     }).catch(function (err) {
         response.send({ server_response: 'API failed: ' + err.toString() })
