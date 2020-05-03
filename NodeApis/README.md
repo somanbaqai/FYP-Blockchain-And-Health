@@ -147,38 +147,38 @@
 - Update Provider Persmissions List: http://192.168.32.134:3639/provider_permissions_list/update?pat_cnic=42101&prov_id=12&access_level=1
 
 - Get Patient Permissions List: http://192.168.32.134:3639/patient_permissions_list/get?pat_cnic=42101
-{
-    "server_response": {
-        "provider_list": [
-            {
-                "uid": "0",
-                "patient_address": "0x064FD681DcE8A3EA2e821e3D2C9e85A04fe0ED71",
-                "fname": "south",
-                "password": "123",
-                "email": "south@south.com",
-                "prov_type": "lab",
-                "prov_address": "a-301",
-                "city": "khi",
-                "country": "pak",
-                "signup_time": "1588530495486",
-                "access_level": "1"
-            },
-            {
-                "uid": "1",
-                "patient_address": "0x064FD681DcE8A3EA2e821e3D2C9e85A04fe0ED71",
-                "fname": "aku",
-                "password": "123",
-                "email": "aku@aku.com",
-                "prov_type": "lab",
-                "prov_address": "a-301",
-                "city": "khi",
-                "country": "pak",
-                "signup_time": "1588536939648",
-                "access_level": "0"
-            }
-        ]
+    * {
+        "server_response": {
+            "provider_list": [
+                {
+                    "uid": "0",
+                    "patient_address": "0x064FD681DcE8A3EA2e821e3D2C9e85A04fe0ED71",
+                    "fname": "south",
+                    "password": "123",
+                    "email": "south@south.com",
+                    "prov_type": "lab",
+                    "prov_address": "a-301",
+                    "city": "khi",
+                    "country": "pak",
+                    "signup_time": "1588530495486",
+                    "access_level": "1"
+                },
+                {
+                    "uid": "1",
+                    "patient_address": "0x064FD681DcE8A3EA2e821e3D2C9e85A04fe0ED71",
+                    "fname": "aku",
+                    "password": "123",
+                    "email": "aku@aku.com",
+                    "prov_type": "lab",
+                    "prov_address": "a-301",
+                    "city": "khi",
+                    "country": "pak",
+                    "signup_time": "1588536939648",
+                    "access_level": "0"
+                }
+            ]
+        }
     }
-}
 - Get Provider Persmissions List : http://192.168.32.134:3639/provider_permissions_list/get?provider_id=12
     * {
     "server_response": {
