@@ -1,5 +1,5 @@
 var Web3 = require('web3');
-var permission_request_contract_address = "0x7620C84B13a9bC66705Fa93ce523408048dB9A2d";
+var permission_request_contract_address = "0x51F2752793880b864f676767F8Ad2106b16315dc";
 
 var permission_request_contractABI = 
 [
@@ -125,14 +125,14 @@ if (typeof web3 !== 'undefined') {
 
 web3.eth.getAccounts().then(function(response) { 
     accounts = response;
-    console.log(accounts[0]);
-    console.log(accounts);
+    // console.log(accounts[0]);
+    // console.log(accounts);
     web3.eth.defaultAccount =  accounts[0];
 });
 
 web3.eth.defaultAccount = web3.eth.accounts[0];
-console.log(web3.eth.defaultAccount);
-console.log(web3.eth.accounts[0])
+// console.log(web3.eth.defaultAccount);
+// console.log(web3.eth.accounts[0])
 var PermissionRequestContract = new web3.eth.Contract( permission_request_contractABI,permission_request_contract_address);
 
 

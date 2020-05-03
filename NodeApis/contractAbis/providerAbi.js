@@ -2,7 +2,7 @@
  
 var Web3 = require('web3');
 
-var contract_address = "0x614FC9AA4079843f46298C6DD586f1D0b1B7EcE8";
+var contract_address = "0xBc1c632E850be915FAfd0e6973A0d3490B1924be";
 
 var contractABI = 
 [
@@ -66,6 +66,73 @@ var contractABI =
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getAllProvider",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "uid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "patient_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "fname",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "password",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "prov_type",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "prov_address",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "city",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "country",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "signup_time",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Provier.ProviderData[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"constant": true,
@@ -153,14 +220,14 @@ var accounts;
 //var account_count = 1;
 web3.eth.getAccounts().then(function(response) { 
     accounts = response;
-    console.log(accounts[0]);
-    console.log(accounts);
+    // console.log(accounts[0]);
+    // console.log(accounts);
     web3.eth.defaultAccount =  accounts[0];
 });
 
 web3.eth.defaultAccount = web3.eth.accounts[0];
-console.log(web3.eth.defaultAccount);
-console.log(web3.eth.accounts[0])
+// console.log(web3.eth.defaultAccount);
+// console.log(web3.eth.accounts[0])
 var ProviderContract = new web3.eth.Contract( contractABI,contract_address);
 
 
