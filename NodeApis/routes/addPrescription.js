@@ -8,7 +8,6 @@ var MedicalEncounterContract = require('../contractAbis/encounterAbi');
 
 router.get('/', (request, response, next) => {
 	console.log("in add prescription");
-    let enc_id = null;
     var date = new Date();
     let prec_time = date.getTime().toString();
     let medicine = request.query.medicine;
@@ -19,6 +18,7 @@ router.get('/', (request, response, next) => {
     let acct_address = '0x064FD681DcE8A3EA2e821e3D2C9e85A04fe0ED71';
 
     // medicine = '{"name": "med_name", "dose": "2 daile"} || {"nam": "med_name", "dose": "3 daile"}'
+    console.log(medicine)
     medicine = medicine.toString().split("||")
     var obj = []
     medicine.forEach(function(value){

@@ -1,9 +1,36 @@
 var Web3 = require('web3');
 
-var prescription_contract_address = "0xE3a9290b04E23f0608Dc9f95701E7717ceB62690";
+var prescription_contract_address = "0xFB214E8D1555cFF2a10C4B7c340BFF5a430Dd8c2";
 
-var prescription_contractABI = 
+var prescription_contractABI =
 [
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "enc_id",
+				"type": "string"
+			}
+		],
+		"name": "getPrescriptionData",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
 	{
 		"constant": false,
 		"inputs": [
@@ -32,33 +59,6 @@ var prescription_contractABI =
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "enc_id",
-				"type": "string"
-			}
-		],
-		"name": "getPrescriptionData",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	}
 ]

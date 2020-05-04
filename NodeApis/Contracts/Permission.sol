@@ -1,6 +1,6 @@
 pragma solidity >=0.4.22 <0.6.0;
 //pragma experimental ABIEncoderV2;
-contract Permission {
+contract  Permission {
    
     // Patient to Provider Permissions List
     struct ProvidersHavingAccessToPatient {
@@ -14,18 +14,18 @@ contract Permission {
         string[] accessLevel;
     }
    
-    mapping (string => ProvidersHavingAccessToPatient) ListOfProvidersHavingAccessToPatients;
-    mapping (string => PatientsAccessibleByProvider) ListOfPatientsAccessibleByProviders;
+    mapping (string => ProvidersHavingAccessToPatient) private ListOfProvidersHavingAccessToPatients;
+    mapping (string => PatientsAccessibleByProvider) private ListOfPatientsAccessibleByProviders;
  
-    address owner;
+    address private owner;
    
     constructor() public {
         owner = msg.sender;
     }
     
-    string[] tempProviders;
-    string[] tempPatients;
-    string[] tempAccesses;
+    string[] private tempProviders;
+    string[] private tempPatients;
+    string[] private tempAccesses;
     
     function updatePatientPermissionsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
      
@@ -64,7 +64,7 @@ contract Permission {
         
         providersHavingAccessToPatient.providerName = tempProviders;
         providersHavingAccessToPatient.accessLevel = tempAccesses;
-        // updateProviderPermissionsList(patientCNIC, providerID, accessLevel);
+        updateProviderPermissionsList(patientCNIC, providerID, accessLevel);
       
     }
 
@@ -137,13 +137,13 @@ contract Permission {
         
         uint256 numberOfPatients = ListOfPatientsAccessibleByProviders[providerID].patientCNIC.length ;
            
-        listOfPatients = string(abi.encodePacked(listOfPatients,'{"provider_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[0]));
-        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provider_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[0]));
+        listOfPatients = string(abi.encodePacked(listOfPatients,'{"patient_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[0]));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provided_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[0]));
         
         for(uint256 i=1; i < numberOfPatients; i++)
         {
-            listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"provider_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[i]));
-            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"provider_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[i]));
+            listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"patient_email":"',ListOfPatientsAccessibleByProviders[providerID].patientCNIC[i]));
+            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"requested_access":"',ListOfPatientsAccessibleByProviders[providerID].accessLevel[i]));
         }
         
         listOfPatients = string(abi.encodePacked(listOfPatients,'"}]'));

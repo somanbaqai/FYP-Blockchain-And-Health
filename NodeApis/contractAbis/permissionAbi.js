@@ -1,8 +1,7 @@
 var Web3 = require('web3');
-var permission_contract_address = "0xdB3E0C8d95268255C343656EA4dDb5532609C260";
+var permission_contract_address = "0xFBeC26379EaB3d96AE96E6542B2870844B810b27";
 
-var permission_contractABI = 
-[
+var permission_contractABI = [
 	{
 		"inputs": [],
 		"payable": false,

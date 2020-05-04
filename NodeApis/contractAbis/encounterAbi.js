@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 
-var encounter_contract_address = "0x022f4D6496547d81BBdE09A69b059CD3E213747f";
+var encounter_contract_address = "0x5f74C61175DAB3a5Bf2fdD2Eb4dEcd47c66211d4";
 
 var encounter_contractABI = 
 [
@@ -35,6 +35,11 @@ var encounter_contractABI =
 			{
 				"internalType": "string",
 				"name": "_json",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_provider_id",
 				"type": "string"
 			}
 		],
@@ -142,29 +147,9 @@ var encounter_contractABI =
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "PatientCNIC",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
+
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 } else {

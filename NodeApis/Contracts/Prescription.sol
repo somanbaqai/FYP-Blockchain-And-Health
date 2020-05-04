@@ -1,4 +1,3 @@
- 
 pragma solidity >=0.4.22 <0.6.0;
 //pragma experimental ABIEncoderV2;
 //import "github.com/Arachnid/solidity-stringutils/strings.sol";
@@ -16,11 +15,11 @@ contract Prescription {
         string medicine_JSON_Data;
     }
    
-    mapping (string => PrescriptionStruct) PrescriptionData;
+    mapping (string => PrescriptionStruct) private PrescriptionData;
     // string[] public PatientCNIC;
-    address owner;
+    address private owner;
   
-   uint index = 0;
+   uint private index = 0;
     constructor() public {
         owner = msg.sender;
     }

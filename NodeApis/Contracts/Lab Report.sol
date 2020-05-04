@@ -16,11 +16,11 @@ contract LabReport {
         string description_JSON_Data;
     }
    
-    mapping (string => LabReportStruct) LabReportData;
+    mapping (string => LabReportStruct) private LabReportData;
     // string[] public PatientCNIC;
-    address owner;
+    address private owner;
   
-   uint index = 0;
+   uint private index = 0;
     constructor() public {
         owner = msg.sender;
     }

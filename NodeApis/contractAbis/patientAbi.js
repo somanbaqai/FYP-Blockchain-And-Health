@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 
-var patinet_contract_address = "0x8F7A0C514171080cf933b0c6B98830b0CE70f5b1";
+var patinet_contract_address = "0xEDcb38067AA0406faAd3480FbdB0015Ff523f7A9";
 
 var patinet_contractABI = 
 [
@@ -12,19 +12,80 @@ var patinet_contractABI =
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "PatientsAccts",
+		"inputs": [],
+		"name": "getAllPatients",
 		"outputs": [
 			{
-				"internalType": "address",
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "uid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "acc_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "fname",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "pat_address",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "city",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "country",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "weight",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "height",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "cnic",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "DoB",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "password",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "signup_time",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Patient.PatientData[]",
 				"name": "",
-				"type": "address"
+				"type": "tuple[]"
 			}
 		],
 		"payable": false,
@@ -169,7 +230,6 @@ var patinet_contractABI =
 		"type": "function"
 	}
 ]
-
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 } else {

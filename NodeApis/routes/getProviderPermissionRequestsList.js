@@ -9,7 +9,7 @@ router.get('/', (request, response, next) => {
 	console.log("in login");
 	let provider_id = request.query.provider_id;
     PermissionContract.methods.getProviderPermissionRequestsList(provider_id).call().then(function(result) { 
-        // console.log(result)
+        console.log(result)
         result = {patient_list : JSON.parse(result[0]) , patient_access_level : JSON.parse(result[1])};
         PatientContract.methods.getAllPatients().call().then(function (res) {
             let ResulaltantArray = { patient_list: [] };
@@ -35,8 +35,8 @@ router.get('/', (request, response, next) => {
                 for(var x = 0;x<result.patient_list.length;x++){
                     console.log( "res: " + res[j].uid)
                     console.log("uid: " + result.patient_list[x].patient_cnic + '\n');
-                    if(result.patient_list[x].patient_cnic == res[j].uid){
-                        obj.access_level = result.patient_access_level[x].patient_access;
+                    if(result.patient_list[x].patient_cnic == res[j].cnic){
+                        obj.access_level = result.patient_access_level[x].requested_access;
                     }
                 }
                 ResulaltantArray.patient_list.push(obj);

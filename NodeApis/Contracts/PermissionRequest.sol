@@ -14,18 +14,18 @@ contract PermissionRequests {
         string[] accessLevel;
     }
    
-    mapping (string => ProvidersRequestingAccessToPatient) ListOfProvidersRequestingAccessToPatients;
-    mapping (string => PatientsRequestedByProvider) ListOfPatientsRequestedByProviders;
+    mapping (string => ProvidersRequestingAccessToPatient) private ListOfProvidersRequestingAccessToPatients;
+    mapping (string => PatientsRequestedByProvider)  private ListOfPatientsRequestedByProviders;
  
-    address owner;
+    address  private owner;
    
     constructor() public {
         owner = msg.sender;
     }
     
-    string[] tempProviders;
-    string[] tempPatients;
-    string[] tempAccesses;
+    string[]  private tempProviders;
+    string[]  private tempPatients;
+    string[]  private tempAccesses;
     
     function updatePatientPermissionRequestsList(string memory patientCNIC, string memory providerID, string memory accessLevel) public{
      
@@ -137,13 +137,13 @@ contract PermissionRequests {
         
         uint256 numberOfPatients = ListOfPatientsRequestedByProviders[providerID].patientCNIC.length ;
            
-        listOfPatients = string(abi.encodePacked(listOfPatients,'{"provider_email":"',ListOfPatientsRequestedByProviders[providerID].patientCNIC[0]));
-        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"provider_access":"',ListOfPatientsRequestedByProviders[providerID].accessLevel[0]));
+        listOfPatients = string(abi.encodePacked(listOfPatients,'{"patient_cnic":"',ListOfPatientsRequestedByProviders[providerID].patientCNIC[0]));
+        listOfAccesses = string(abi.encodePacked(listOfAccesses,'{"requested_access":"',ListOfPatientsRequestedByProviders[providerID].accessLevel[0]));
         
         for(uint256 i=1; i < numberOfPatients; i++)
         {
-            listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"provider_email":"',ListOfPatientsRequestedByProviders[providerID].patientCNIC[i]));
-            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"provider_access":"',ListOfPatientsRequestedByProviders[providerID].accessLevel[i]));
+            listOfPatients = string(abi.encodePacked(listOfPatients,'"},{"patient_cnic":"',ListOfPatientsRequestedByProviders[providerID].patientCNIC[i]));
+            listOfAccesses = string(abi.encodePacked(listOfAccesses,'"},{"requested_access":"',ListOfPatientsRequestedByProviders[providerID].accessLevel[i]));
         }
         
         listOfPatients = string(abi.encodePacked(listOfPatients,'"}]'));
