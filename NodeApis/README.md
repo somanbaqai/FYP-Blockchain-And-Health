@@ -203,9 +203,9 @@
     }
 }
 
-- NOTE: Patient will call following api: updatePatientPermissionList
-- NOTE: proider wali call hi nhi hogi
-- NOTE: call updatePatientPermissionRequestsList to remove request from request list after calling Update Patient List with access level given as '0'
+- NOTE: In order to give permission to provider, Patient will always call api: updatePatientPermissionList
+- NOTE: If updatePatientPermissionList is called, client should also call updatePatientPermissionRequestsList [with accessLevel set to 0] in order to delete the Permission Request as the request has been converted to actual permission now.
+- NOTE: Provider Permission API or Provider Permission Request API will never be called
 
 ## permiission request APIS
 - Update patient permission request List: http://192.168.32.134:3639/patient_permission_requests_list/update?pat_cnic=42101&prov_id=0&access_level=1
@@ -257,7 +257,7 @@
     }
 }
 
-- NOTE: Provider will call this api to request permission -> updatePatientPermissionRequestsList
-- NOTE provider wali call nahi hogi
-- 
+- NOTE: In order to ask permission from patient, Provider will call api: updatePatientPermissionRequestsList
+- NOTE: Provider Permission API or Provider Permission Request API will never be called
+- NOTE: To delete a permission request, the mentioned API must be called with access level 0
 
