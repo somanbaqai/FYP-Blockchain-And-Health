@@ -32,6 +32,11 @@ const getProviderPermissionRequestsList = require('./routes/getProviderPermissio
 
 const express_app = express();
 // const express_router = express.Router();
+express_app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 express_app.use('/patient/login',patientLogin);
 express_app.use('/patient/signup',patientSignup);

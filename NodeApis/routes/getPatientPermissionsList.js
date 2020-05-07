@@ -54,12 +54,42 @@ router.get('/', (request, response, next) => {
 
 
         } catch (err) {
-            response.send({ server_response: 'API failed: ' + err.toString() });
+            
+            // response.send({ server_response: 'API failed: ' + err.toString() });
         }
 
 
     }).catch(function (err) {
-        response.send({ server_response: 'API failed: ' + err.toString() })
+        ProviderContract.methods.getAllProvider().call().then(function (res) {
+            let ResulaltantArray = { provider_list: [] };
+
+            for (var j = 0; j < res.length; j++) {
+                var obj = {
+                    uid: res[j].uid,
+                    patient_address: res[j].patient_address,
+                    fname: res[j].fname,
+                    password: res[j].password,
+                    email: res[j].email,
+                    prov_type: res[j].prov_type,
+                    prov_address: res[j].prov_address,
+                    city: res[j].city,
+                    country: res[j].country,
+                    signup_time: res[j].signup_time,
+                    access_level: '0'
+                }
+                // console.log("uid: " + result.provider_list.length);
+                ResulaltantArray.provider_list.push(obj);
+            }
+
+            if (res[1] != 0) {
+                // console.log(ResulaltantArray)
+                response.send({ server_response: JSON.parse(JSON.stringify(ResulaltantArray)) });
+
+            } 
+
+
+        });
+        // response.send({ server_response: 'API failed: ' + err.toString() })
 
     });
 
