@@ -1,67 +1,9 @@
 var Web3 = require('web3');
 
-var prescription_contract_address = "0xFB214E8D1555cFF2a10C4B7c340BFF5a430Dd8c2";
+var prescription_contract_address = require("../migrations/ContractAddress.json").prescription;
 
-var prescription_contractABI =
-[
-	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "enc_id",
-				"type": "string"
-			}
-		],
-		"name": "getPrescriptionData",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_prec_time",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "enc_id",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "provider",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_json",
-				"type": "string"
-			}
-		],
-		"name": "setPrescriptionrData",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-]
+var prescription_contractABI = require("../build/contracts/Prescription.json").abi;
+
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 } else {

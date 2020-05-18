@@ -13,7 +13,7 @@ router.get('/', (request, response, next) => {
         result = {patient_list : JSON.parse(result[0]) , patient_access_level : JSON.parse(result[1])};
         PatientContract.methods.getAllPatients().call().then(function (res) {
             let ResulaltantArray = { patient_list: [] };
-        
+            console.log(result)
             for (var j = 0; j < res.length; j++) {
                 var obj = {
                     uid: res[j].uid,
@@ -34,8 +34,8 @@ router.get('/', (request, response, next) => {
                 // console.log("uid: " + result.patient_list.length);
                 for(var x = 0;x<result.patient_list.length;x++){
                     console.log( "res: " + res[j].uid)
-                    console.log("uid: " + result.patient_list[x].patient_cnic + '\n');
-                    if(result.patient_list[x].patient_cnic == res[j].cnic){
+                    console.log("uid: " + result.patient_list[x].patient_email + '\n');
+                    if(result.patient_list[x].patient_email == res[j].cnic){
                         obj.access_level = result.patient_access_level[x].requested_access;
                     }
                 }
