@@ -7336,12 +7336,12 @@
     "12345": {
       "events": {},
       "links": {},
-      "address": "0x1a5c328b79d4E303764C1c304AF83c0730110e4e",
-      "transactionHash": "0xecbe25610aeac38e56c368305fb0497852f06a3fe44ab6cf0c1b8aee0fc76ff4"
+      "address": "0x60826f44E405ccef60Af7D288311C92a4a75d27D",
+      "transactionHash": "0x2a27056cb90fc1453a3f228a2f13726f4b40c93676219154decce9662097d64f"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-05-30T17:59:58.866Z",
+  "updatedAt": "2020-06-06T15:54:23.746Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

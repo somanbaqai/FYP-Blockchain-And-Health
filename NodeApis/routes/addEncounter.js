@@ -8,8 +8,7 @@ var MedicalEncounterContract = require('../contractAbis/encounterAbi');
 router.get('/', (request, response, next) => {
     console.log("in add encounter");
     let cnic = request.query.cnic;
-    let apt_time = new Date()
-    apt_time = apt_time.getTime().toString();;
+    let apt_time = request.query.apt_time;
     let dr_name = request.query.dr_name;
     let details = request.query.details;
     let provider_id = request.query.provider_id;
@@ -38,7 +37,7 @@ router.get('/', (request, response, next) => {
                 json = JSON.stringify(obj, null, ' ');
                 console.log(json);
 
-                MedicalEncounterContract.methods.setEncounterData(dr_name, apt_time, cnic, details, acct_address, json, provider_id).send({
+                MedicalEncounterContract.methods.setEncounterData(dr_name, apt_time, cnic, details, acct_address, json).send({
                     from: web3.eth.defaultAccount,
                     gas: 3000000
                 }).then(function (result) {
@@ -48,7 +47,7 @@ router.get('/', (request, response, next) => {
                         server_response: 'Successfully added patient record.'
                     });
 
-                });
+                }).catch((err) => {console.log(err)});
                 // response.send({ server_response: 'Successfully added patient record.' }); 
 
             });

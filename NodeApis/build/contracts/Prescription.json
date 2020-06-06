@@ -3962,12 +3962,12 @@
     "12345": {
       "events": {},
       "links": {},
-      "address": "0x0FEC1325D4795B7a3777F619810a830d62C5580E",
-      "transactionHash": "0x76b4967fe15e362b379eef8710713d2f3f5ef51abdee27a69103fe8f531419b9"
+      "address": "0xb78B29AB22B2efc379e586a28686334A5f227718",
+      "transactionHash": "0xfe7214f4b551ec8185e31ad17ce5183fc44a44df9025c59ee73ef6d4fcd593e6"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-05-30T18:00:44.488Z",
+  "updatedAt": "2020-06-06T15:55:48.695Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

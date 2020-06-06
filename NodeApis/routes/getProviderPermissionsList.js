@@ -42,22 +42,26 @@ router.get("/", (request, response, next) => {
                             DoB: res[j].DoB,
                             access_level: "0",
                         };
+//console.log(obj)
                         // console.log("uid: " + result.patient_list.length);
                         for (var x = 0; x < result.patient_list.length; x++) {
-                            console.log("res: " + res[j].uid);
+                            console.log("res: " + res[j].cnic);
                             console.log(
                                 "uid: " + result.patient_list[x].patient_email + "\n"
                             );
                             if (result.patient_list[x].patient_email == res[j].cnic) {
-                                obj.access_level =
-                                    result.patient_access_level[x].requested_access;
-                            }
+                                obj.access_level = result.patient_access_level[x].provided_access;
+//				console.log(result.patient_access_level[x])
+                          }
+
                         }
+console.log(obj)
                         ResulaltantArray.patient_list.push(obj);
                     }
 
                     if (res[1] != 0) {
-                        // console.log(ResulaltantArray)
+  //                      console.log(ResulaltantArray)
+     
                         response.send({
                             server_response: JSON.parse(JSON.stringify(ResulaltantArray)),
                         });
@@ -101,7 +105,7 @@ router.get("/", (request, response, next) => {
                         ResulaltantArray.patient_list.push(obj);
                     }
 
-                    console.log(ResulaltantArray);
+//                    console.log(ResulaltantArray);
 
                     response.send({
                         server_response: ResulaltantArray,

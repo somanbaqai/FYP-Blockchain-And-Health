@@ -8224,12 +8224,12 @@
     "12345": {
       "events": {},
       "links": {},
-      "address": "0x01ef35D06deD3101A5B2bc83D541c342D5f716d9",
-      "transactionHash": "0xaa92388e0e9ec52ceba0134849854a7cf7d3b6c65614ac52b847c1848349e571"
+      "address": "0xD9BF3c6D0550e6BF22F09F54596Cb5901a913E4C",
+      "transactionHash": "0x848cda18ed62cbf13b2acfd7dc0fbe67a44f437b1583a3525dbf2a2df7d9eee8"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-05-30T17:59:51.742Z",
+  "updatedAt": "2020-06-06T15:53:41.329Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

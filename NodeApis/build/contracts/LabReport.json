@@ -7613,12 +7613,12 @@
     "12345": {
       "events": {},
       "links": {},
-      "address": "0xfb100B1592BaF2d3E811548F0c570f829862488C",
-      "transactionHash": "0x227da8a95792a9a8d72ef5e766ab3ece30a743794e40b363a151cd8577c79a33"
+      "address": "0xED8C6b5acceCC8a778DD0DA48aD7A056DE6B1AcD",
+      "transactionHash": "0x1b74c431abacea58862d8fa72d9154f6aaa916eebeea15ea00815bf3e79ebcd7"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-05-30T18:00:20.125Z",
+  "updatedAt": "2020-06-06T15:55:12.622Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

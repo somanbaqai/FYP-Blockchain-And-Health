@@ -14,6 +14,7 @@ contract MedicalEncounter {
         string[] enc_time;
         address[] provider;
         string JSON_Data;
+
     }
    
     mapping (string => MedicalEnconterStruct) private MedicalEncounters;
@@ -43,7 +44,7 @@ contract MedicalEncounter {
         
     // } 
     
-    function setEncounterData(string memory heathcare_professional,string memory encounter_time,string memory patientCnic,string memory details,address provider,string memory _json) public{
+    function setEncounterData(string memory heathcare_professional,string memory encounter_time,string memory patientCnic,string memory details,address provider,string memory _json ) public{
      
        MedicalEnconterStruct storage medicalencounter = MedicalEncounters[patientCnic];
        
