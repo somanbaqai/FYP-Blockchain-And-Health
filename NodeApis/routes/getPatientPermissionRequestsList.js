@@ -56,7 +56,33 @@ router.get('/', (request, response, next) => {
         // console.log(result)
         // result = {patient_list : JSON.parse(result[0]) , provided_access_level : JSON.parse(result[1])};
         // console.log(result)
-        response.send({ server_response: 'API failed: ' + err.toString() })
+        //response.send({ server_response: 'API failed: ' + err.toString() })
+        PatientContract.methods.getAllPatients().call().then(function (res) {
+            let ResulaltantArray = { patient_list: [] };
+            console.log(result)
+            for (var j = 0; j < res.length; j++) {
+                var obj = {
+                    uid: res[j].uid,
+                    acc_address: res[j].acc_address,
+                    fname: res[j].fname,
+                    password: res[j].password,
+                    email: res[j].email,
+                    pat_address: res[j].pat_address,
+                    city: res[j].city,
+                    country: res[j].country,
+                    signup_time: res[j].signup_time,
+                    weight: res[j].weight,
+                    height: res[j].height,
+                    cnic: res[j].cnic,
+                    DoB: res[j].DoB,
+                    access_level: '0'
+                }
+
+ResulaltantArray.patient_list.push(obj);
+ }
+ response.send({ server_response: ResulaltantArray})
+
+  });
 
 
     });;
