@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 
-var encounter_contract_address = require("../migrations/ContractAddress.json").provider;
+var encounter_contract_address = require("../migrations/ContractAddress.json").encounter;
 
 var encounter_contractABI = require("../build/contracts/Provider.json").abi
 if (typeof web3 !== 'undefined') {
