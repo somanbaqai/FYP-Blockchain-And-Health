@@ -3,7 +3,7 @@
 var Web3 = require('web3');
 
 var contract_address = require("../migrations/ContractAddress.json").provider;
-
+console.log(contract_address)
 var contractABI = require("../build/contracts/Provider.json").abi;
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
@@ -28,6 +28,6 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 // console.log(web3.eth.accounts[0])
 var ProviderContract = new web3.eth.Contract( contractABI,contract_address);
 
-
+console.log(ProviderContract)
 module.exports = ProviderContract;
 
