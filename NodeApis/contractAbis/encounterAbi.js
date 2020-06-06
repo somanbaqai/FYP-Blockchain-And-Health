@@ -2,7 +2,7 @@ var Web3 = require('web3');
 
 var encounter_contract_address = require("../migrations/ContractAddress.json").encounter;
 
-var encounter_contractABI = require("../build/contracts/Provider.json").abi
+var encounter_contractABI = require("../build/contracts/MedicalEncounter.json").abi
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 } else {
