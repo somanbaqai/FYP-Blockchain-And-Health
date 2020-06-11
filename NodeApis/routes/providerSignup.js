@@ -19,16 +19,20 @@ router.get('/', (request, response, next) => {
     let password = request.query.password;
     let acct_address = '0x064FD681DcE8A3EA2e821e3D2C9e85A04fe0ED71';
 
-
+console.log("in provider signup")
 
     //   ,  string memory _cnic,string memory _DoB,string memory _email,string memory _password,address _address) public{
 
     ProviderContract.methods.setProvider(fname, email, password, prov_type, prov_address, city, country, signup_time, acct_address)
-        .send({ from: web3.eth.defaultAccount, gas: 3000000 })
+        .send({ from: web3.eth.defaultAccount, gas :3000000})
         .then(function (res) {
+		console.log(res)
             response.send({ server_response: 'Provider signup successful!' });
 
-        });
+        }).catch((err) => {
+	console.log(err)
+
+});
 
 
 });

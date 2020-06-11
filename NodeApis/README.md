@@ -261,3 +261,10 @@
 - NOTE: Provider Permission API or Provider Permission Request API will never be called
 - NOTE: To delete a permission request, the mentioned API must be called with access level 0
 
+
+# Truffule Setup
+
+
+ - truffle compile --all
+ - truffle migrate --reset
+

@@ -56,10 +56,11 @@ router.get('/', (request, response, next) => {
         // console.log(result)
         // result = {patient_list : JSON.parse(result[0]) , provided_access_level : JSON.parse(result[1])};
         // console.log(result)
-        response.send({ server_response: 'API failed: ' + err.toString() })
+       response.send({ server_response: 'API failed: ' + err.toString() })
+       
 
 
-    });;
+    });
 
 });
 module.exports = router;
