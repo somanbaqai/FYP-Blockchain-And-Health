@@ -1,0 +1,19 @@
+{
+  "difficulty": "3",
+  "gasLimit": "30000000",
+  "config": {
+    "chainId": 12345,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 40000,
+    "ethash": {}
+  },
+  "alloc": {
+    
+  }
+}

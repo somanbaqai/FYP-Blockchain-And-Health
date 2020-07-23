@@ -1,9 +1,8 @@
 var Web3 = require('web3');
 
-var patinet_contract_address = require("../migrations/ContractAddress.json").patient;
+var encounter_contract_address = require("../migrations/ContractAddress.json").encounter;
 
-var patinet_contractABI = require("../build/contracts/Patient.json").abi;
-
+var encounter_contractABI = require("../build/contracts/MedicalEncounter.json").abi
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
 } else {
@@ -13,8 +12,7 @@ if (typeof web3 !== 'undefined') {
     
 }
 //console.log( web3.eth.getAccounts().then(function(response) { accounts = response; console.log(accounts[0]; })));
-var accounts;
-var account_count;
+
 
 web3.eth.getAccounts().then(function(response) { 
     accounts = response;
@@ -26,6 +24,7 @@ web3.eth.getAccounts().then(function(response) {
 web3.eth.defaultAccount = web3.eth.accounts[0];
 // console.log(web3.eth.defaultAccount);
 // console.log(web3.eth.accounts[0])
-var PatientContract = new web3.eth.Contract( patinet_contractABI,patinet_contract_address);
+var MedicalEncounterContract = new web3.eth.Contract( encounter_contractABI,encounter_contract_address);
 
-module.exports = PatientContract;
+
+module.exports = MedicalEncounterContract;
